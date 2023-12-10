@@ -16,8 +16,8 @@ import { app } from "@/utils/firebase";
 import ReactQuill from "react-quill";
 
 const WritePage = () => {
-  // const { status } = useSession();
-  // const router = useRouter();
+  const router = useRouter();
+  const { status } = useSession();
 
   const [open, setOpen] = useState(false);
   const [file, setFile] = useState(null);
@@ -25,6 +25,14 @@ const WritePage = () => {
   const [value, setValue] = useState("");
   const [title, setTitle] = useState("");
   const [catSlug, setCatSlug] = useState("");
+
+  if (status === "loading") {
+    return <div className={styles.loading}>Loading...</div>;
+  }
+
+  if (status === "authenticated") {
+    router.push("/");
+  }
 
   return (
     <div className={styles.container}>
