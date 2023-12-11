@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["mongoDb"]
 }
 
 datasource db {
@@ -11,18 +12,18 @@ datasource db {
 }
 
 model Account {
-  id                 String  @id @default(cuid()) @map("_id")
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  
-  access_token       String?  
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  
-  session_state      String?
+  id                String  @id @default(cuid()) @map("_id")
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -45,12 +46,12 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  Post          Post[]
+  // Post          Post[]
   Comment       Comment[]
 }
 
 model VerificationToken {
-  identifier String @id @map("_id")
+  identifier String   @id @map("_id")
   token      String   @unique
   expires    DateTime
 
@@ -62,7 +63,7 @@ model Category {
   slug  String  @unique
   title String
   img   String?
-  Posts Post[]
+  // Posts Post[]
 }
 
 model Post {
@@ -74,9 +75,9 @@ model Post {
   img       String?
   views     Int       @default(0)
   catSlug   String
-  cat       Category  @relation(fields: [catSlug], references: [slug])
+  // cat       Category  @relation(fields: [catSlug], references: [slug])
   userEmail String
-  user      User      @relation(fields: [userEmail], references: [email])
+  // user      User      @relation(fields: [userEmail], references: [email])
   comments  Comment[]
 }
 
