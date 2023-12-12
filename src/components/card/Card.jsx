@@ -39,23 +39,25 @@ const Card = ({ key, item }) => {
   return (
     <div className={styles.container} key={key}>
       <div className={styles.imageContainer}>
-        <Image src="/p1.jpeg" alt="" fill className={styles.image} />
+        <Image
+          src={item.img ? item.img : "/bg.jpg"}
+          alt=""
+          fill
+          className={styles.image}
+        />
       </div>
       <div className={styles.textContainer}>
         <div className={styles.detail}>
-          <span className={styles.date}>2021-09-09 - </span>
-          <span className={styles.category}>Style</span>
+          <span className={styles.date}>
+            {item.createdAt.substring(0, 10)} -{" "}
+          </span>
+          <span className={styles.category}>{item.catSlug}</span>
         </div>
-        <Link href="/">
+        <Link href={`/posts/${item.slug}`}>
           <h1>{item.title}</h1>
         </Link>
-        <p className={styles.desc}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate,
-          quam nisi magni ea laborum inventore voluptatum laudantium repellat
-          ducimus unde aspernatur fuga. Quo, accusantium quisquam! Harum unde
-          sit culpa debitis.
-        </p>
-        <Link href="/" className={styles.link}>
+        <p className={styles.desc}>{item.desc.substring(0, 60)}...</p>
+        <Link href={`/posts/${item.slug}`} className={styles.link}>
           Read More
         </Link>
       </div>
