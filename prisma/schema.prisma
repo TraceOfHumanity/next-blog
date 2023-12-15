@@ -46,7 +46,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  // Post          Post[]
+  Post          Post[]
   Comment       Comment[]
 }
 
@@ -63,7 +63,7 @@ model Category {
   slug  String  @unique
   title String
   img   String?
-  // Posts Post[]
+  Posts Post[]
 }
 
 model Post {
@@ -75,9 +75,9 @@ model Post {
   img       String?
   views     Int       @default(0)
   catSlug   String
-  // cat       Category  @relation(fields: [catSlug], references: [slug])
+  cat       Category  @relation(fields: [catSlug], references: [slug])
   userEmail String
-  // user      User      @relation(fields: [userEmail], references: [email])
+  user      User      @relation(fields: [userEmail], references: [email])
   comments  Comment[]
 }
 

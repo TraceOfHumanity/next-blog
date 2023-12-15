@@ -33,12 +33,10 @@ const SinglePage = async ({ params }) => {
 
   const data = await getData(slug);
   // console.log(data.userEmail);
-  console.log(data);
+  // console.log(data);
   const user = await prisma.user.findUnique({
     where: { email: data.userEmail },
   });
-  console.log(user);
-  // console.log(user);
   // console.log(user);
   return (
     <div className={styles.container}>
@@ -77,9 +75,9 @@ const SinglePage = async ({ params }) => {
             className={styles.description}
             // dangerouslySetInnerHTML={{ __html: data?.desc }}
           >
-            {/* {data?.desc} */}
+            {data?.desc}
           </div>
-          <Comments />
+          <Comments postSlug={slug} />
         </div>
         <Menu />
       </div>
